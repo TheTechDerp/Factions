@@ -1,14 +1,14 @@
 package com.massivecraft.factions;
 
+import com.google.gson.reflect.TypeToken;
+import com.massivecraft.factions.struct.Rel;
+import com.massivecraft.factions.zcore.persist.PlayerEntityCollection;
+
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import org.bukkit.craftbukkit.libs.com.google.gson.reflect.TypeToken;
-import com.massivecraft.factions.struct.Rel;
-import com.massivecraft.factions.zcore.persist.PlayerEntityCollection;
 
 public class FPlayers extends PlayerEntityCollection<FPlayer>
 {

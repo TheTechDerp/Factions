@@ -1,38 +1,16 @@
 package com.massivecraft.factions;
 
-import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.Set;
-
-import org.bukkit.block.Block;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.Location;
-import org.bukkit.Material;
-
+import com.google.gson.GsonBuilder;
 import com.massivecraft.factions.adapters.FFlagTypeAdapter;
 import com.massivecraft.factions.adapters.FPermTypeAdapter;
 import com.massivecraft.factions.adapters.LocationTypeAdapter;
 import com.massivecraft.factions.adapters.RelTypeAdapter;
-import com.massivecraft.factions.cmd.*;
+import com.massivecraft.factions.cmd.CmdAutoHelp;
+import com.massivecraft.factions.cmd.FCmdRoot;
+import com.massivecraft.factions.integration.*;
 import com.massivecraft.factions.integration.capi.CapiFeatures;
 import com.massivecraft.factions.integration.herochat.HerochatFeatures;
-import com.massivecraft.factions.integration.Econ;
-import com.massivecraft.factions.integration.EssentialsFeatures;
-import com.massivecraft.factions.integration.LWCFeatures;
-import com.massivecraft.factions.integration.SpoutFeatures;
-import com.massivecraft.factions.integration.Worldguard;
-import com.massivecraft.factions.listeners.FactionsBlockListener;
-import com.massivecraft.factions.listeners.FactionsChatListener;
-import com.massivecraft.factions.listeners.FactionsEntityListener;
-import com.massivecraft.factions.listeners.FactionsExploitListener;
-import com.massivecraft.factions.listeners.FactionsAppearanceListener;
-import com.massivecraft.factions.listeners.FactionsPlayerListener;
-import com.massivecraft.factions.listeners.FactionsServerListener;
+import com.massivecraft.factions.listeners.*;
 import com.massivecraft.factions.struct.FFlag;
 import com.massivecraft.factions.struct.FPerm;
 import com.massivecraft.factions.struct.Rel;
@@ -41,8 +19,18 @@ import com.massivecraft.factions.util.AutoLeaveTask;
 import com.massivecraft.factions.util.LazyLocation;
 import com.massivecraft.factions.zcore.MPlugin;
 import com.massivecraft.factions.zcore.util.TextUtil;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import org.bukkit.craftbukkit.libs.com.google.gson.GsonBuilder;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class P extends MPlugin
@@ -85,17 +73,17 @@ public class P extends MPlugin
 	@Override
 	public void onEnable()
 	{
-		// bit of (apparently absolutely necessary) idiot-proofing for CB version support due to changed GSON lib package name
-		try
-		{
-			Class.forName("org.bukkit.craftbukkit.libs.com.google.gson.reflect.TypeToken");
-		}
-		catch (ClassNotFoundException ex)
-		{
-			this.log(Level.SEVERE, "CraftBukkit 1.3.2-R0.1 (build 2340) or newer required. Your CraftBukkit build is not compatible.");
-			this.suicide();
-			return;
-		}
+//		// bit of (apparently absolutely necessary) idiot-proofing for CB version support due to changed GSON lib package name
+//		try
+//		{
+//			Class.forName("org.bukkit.craftbukkit.libs.com.google.gson.reflect.TypeToken");
+//		}
+//		catch (ClassNotFoundException ex)
+//		{
+//			this.log(Level.SEVERE, "CraftBukkit 1.3.2-R0.1 (build 2340) or newer required. Your CraftBukkit build is not compatible.");
+//			this.suicide();
+//			return;
+//		}
 
 		if ( ! preEnable()) return;
 		this.loadSuccessful = false;

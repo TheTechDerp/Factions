@@ -1,18 +1,11 @@
 package com.massivecraft.factions.adapters;
 
-import java.lang.reflect.Type;
-import java.util.logging.Level;
-
+import com.google.gson.*;
 import com.massivecraft.factions.P;
 import com.massivecraft.factions.util.LazyLocation;
 
-import org.bukkit.craftbukkit.libs.com.google.gson.JsonDeserializationContext;
-import org.bukkit.craftbukkit.libs.com.google.gson.JsonDeserializer;
-import org.bukkit.craftbukkit.libs.com.google.gson.JsonElement;
-import org.bukkit.craftbukkit.libs.com.google.gson.JsonObject;
-import org.bukkit.craftbukkit.libs.com.google.gson.JsonParseException;
-import org.bukkit.craftbukkit.libs.com.google.gson.JsonSerializationContext;
-import org.bukkit.craftbukkit.libs.com.google.gson.JsonSerializer;
+import java.lang.reflect.Type;
+import java.util.logging.Level;
 
 
 public class LocationTypeAdapter implements JsonDeserializer<LazyLocation>, JsonSerializer<LazyLocation>
